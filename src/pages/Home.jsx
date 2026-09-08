@@ -13,9 +13,9 @@ const Social = lazy(() => import("@/components/Social"));
 const Contact = lazy(() => import("@/components/Contact"));
 
 const HERO_IMG =
-  "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/0c9620cbc_generated_5ca56c86.jpg";
+  "/assets/Banner_YouTube_GUIGA_MUSIC_sem_GM_final_2560x1440.png";
 const ABOUT_IMG =
-  "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/dd302ce10_generated_02d661a1.jpg";
+  "/assets/03_Algumas_Cicatrizes_YouTube_16x9.png";
 
 const SectionFallback = () => (
   <div className="py-32 flex items-center justify-center">

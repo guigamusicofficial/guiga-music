@@ -8,7 +8,7 @@ export const RELEASES = [
     title: "O Delírio de um Coração Teimoso",
     artist: "GUIGA MUSIC",
     status: "Ouça Agora",
-    cover: "", // insert official cover URL here
+    cover: "/assets/O_Delirio_de_um_Coracao_Teimoso_3000x3000.jpg",
     spotify: "https://open.spotify.com/intl-pt/album/3k6TKPJvY4pybYZePohRNq",
     streaming: [
       { name: "Spotify", href: "https://open.spotify.com/intl-pt/album/3k6TKPJvY4pybYZePohRNq" },
@@ -22,7 +22,7 @@ export const RELEASES = [
     title: "Cicatrizes na Pele",
     artist: "GUIGA MUSIC",
     status: "Chegando às Plataformas",
-    cover: "", // insert official cover URL here
+    cover: "/assets/Cicatrizes_na_Pele_referencia.jpg",
     spotify: "",
     streaming: [],
   },

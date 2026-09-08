@@ -22,9 +22,11 @@ export default function Footer() {
     <footer className="relative border-t border-white/5 bg-[#050505] py-16 sm:py-20 safe-bottom">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 safe-x">
         <div className="flex flex-col items-center text-center gap-8">
-          <span className="font-display font-extrabold tracking-[0.2em] text-lg text-white/90">
-            GUIGA <span className="text-white/40 font-medium">MUSIC</span>
-          </span>
+          <img
+            src="/assets/guiga-music-logo-oficial.webp"
+            alt="GUIGA MUSIC"
+            className="w-36 sm:w-44 h-auto object-contain opacity-90"
+          />
 
           <div className="flex items-center gap-5">
             {SOCIALS.map(({ name, href, Icon }) => (

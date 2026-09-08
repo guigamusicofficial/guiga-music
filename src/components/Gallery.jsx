@@ -3,44 +3,37 @@ const db = globalThis.__B44_DB__ || { auth:{ isAuthenticated: async()=>false, me
 import React, { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
-import { Image } from "@/components/ui/image";
 
 const PHOTOS = [
   {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/8b8431335_generated_image.png",
-    title: "Estúdio",
-    caption: "Entre as tomadas",
+    src: "/assets/03_Algumas_Cicatrizes_YouTube_16x9.png",
+    title: "Cicatrizes",
+    caption: "Algumas cicatrizes ninguém vê",
     span: "col-span-2 row-span-2",
   },
   {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/40c4ad318_generated_image.png",
-    title: "Palco",
-    caption: "Luz e fumaça",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/c27c6a197_generated_image.png",
-    title: "Som",
-    caption: "Frequências",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/178fdb197_generated_image.png",
-    title: "Madrugada",
-    caption: "A cidade como palco",
+    src: "/assets/Miniatura_Live_Depois_da_Meia_Noite_YouTube.png",
+    title: "Depois da Meia-Noite",
+    caption: "Universo GUIGA MUSIC",
     span: "col-span-2 row-span-1",
   },
   {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/c54237e70_generated_image.png",
-    title: "Teclas",
-    caption: "Silêncio antes da nota",
-    span: "col-span-1 row-span-1 md:row-span-2",
+    src: "/assets/O_Delirio_de_um_Coracao_Teimoso_3000x3000.jpg",
+    title: "O Delírio",
+    caption: "Coração Teimoso",
+    span: "col-span-1 row-span-2",
   },
   {
-    src: "https://media.db.com/images/public/6aa07b6fc97a0fa45486ba9b/cb1fbda87_generated_image.png",
-    title: "Corredor",
-    caption: "Onde tudo começa",
+    src: "/assets/Cicatrizes_na_Pele_referencia.jpg",
+    title: "Cicatrizes na Pele",
+    caption: "Tempestade e superação",
     span: "col-span-1 row-span-1",
+  },
+  {
+    src: "/assets/Banner_YouTube_GUIGA_MUSIC_sem_GM_final_2560x1440.png",
+    title: "GUIGA MUSIC",
+    caption: "Música que marca. Histórias que ficam.",
+    span: "col-span-2 row-span-1",
   },
 ];
 
@@ -97,11 +90,11 @@ export default function Gallery() {
               className={`group relative overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-white/20 transition-colors duration-500 ${photo.span}`}
               aria-label={`Abrir imagem — ${photo.title}`}
             >
-              <Image
+              <img
                 src={photo.src}
                 alt={photo.title}
-                fittingType="fill"
-                className="block w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105"
+                loading="lazy"
+                className="block w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
               <span className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-left translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
@@ -163,11 +156,10 @@ export default function Gallery() {
                 className="relative z-[1] max-w-5xl w-full flex flex-col items-center"
               >
                 <div className="relative w-full h-[58vh] sm:h-[72vh]">
-                  <Image
+                  <img
                     src={PHOTOS[active].src}
                     alt={PHOTOS[active].title}
-                    fittingType="fit"
-                    className="w-full h-full"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="mt-5 text-center">

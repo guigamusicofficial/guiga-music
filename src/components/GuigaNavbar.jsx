@@ -56,10 +56,11 @@ export default function GuigaNavbar() {
               className="group flex items-center"
               aria-label="GUIGA MUSIC — Início"
             >
-              <span className="font-display font-extrabold tracking-[0.18em] text-sm sm:text-base text-white/90 group-hover:text-white transition-colors duration-500">
-                GUIGA
-                <span className="text-white/40 ml-1.5 font-medium tracking-[0.18em]">MUSIC</span>
-              </span>
+              <img
+                src="/assets/gm-monograma-oficial.webp"
+                alt="GUIGA MUSIC"
+                className="h-10 sm:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              />
             </Link>
 
             <ul className="hidden md:flex items-center gap-10">
