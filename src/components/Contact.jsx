@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Send } from "lucide-react";
 
-const CONTACT_EMAIL = "contact@GigaMusic.com.br";
+const CONTACT_EMAIL = "contato@guigamusic.com.br";
 
 export default function Contact() {
   const [form, setForm] = useState({ nome: "", email: "", assunto: "", mensagem: "" });
