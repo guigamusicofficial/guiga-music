@@ -4,12 +4,12 @@ import { ArrowUpRight, Headphones } from "lucide-react";
 const ALL_MUSIC = "https://hyperfollow.com/guigamusic";
 
 export const PLATFORMS = [
-  { name: "Spotify", href: ALL_MUSIC, color: "#1DB954" },
-  { name: "Apple Music", href: ALL_MUSIC, color: "#FA243C" },
-  { name: "YouTube Music", href: ALL_MUSIC, color: "#FF0000" },
-  { name: "Amazon Music", href: ALL_MUSIC, color: "#00A8E1" },
-  { name: "Deezer", href: ALL_MUSIC, color: "#A238FF" },
-  { name: "Tidal", href: ALL_MUSIC, color: "#00D9FF" },
+  { name: "Spotify", href: "https://open.spotify.com/intl-pt/artist/3xn5iDjkfoQqfgIX19RVDO", color: "#1DB954" },
+  { name: "Apple Music", href: "https://music.apple.com/us/artist/guiga-music/6806690161", color: "#FA243C" },
+  { name: "YouTube Music", href: "https://music.youtube.com/@guigamusicofficial", color: "#FF0000" },
+  { name: "Amazon Music", href: "https://music.amazon.com.br/artists/B0HH59WYTL/guiga-music", color: "#00A8E1" },
+  { name: "Deezer", href: "https://www.deezer.com/br/artist/413197791?host=0&deferredFl=1", color: "#A238FF" },
+  { name: "TIDAL", href: ALL_MUSIC, color: "#00D9FF" },
 ];
 
 export default function Platforms() {
@@ -28,7 +28,7 @@ export default function Platforms() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {PLATFORMS.map((p, i) => (
+          {PLATFORMS.map((p) => (
             <a
               key={p.name}
               href={p.href}
@@ -52,10 +52,16 @@ export default function Platforms() {
           ))}
         </div>
 
-        <a href={ALL_MUSIC} target="_blank" rel="noopener noreferrer" className="mt-10 mx-auto flex w-fit items-center gap-3 btn-solid">
-          Ouvir todos os lançamentos
-          <ArrowUpRight size={15} />
-        </a>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={ALL_MUSIC} target="_blank" rel="noopener noreferrer" className="flex w-fit items-center gap-3 btn-solid">
+            Todas as plataformas
+            <ArrowUpRight size={15} />
+          </a>
+          <a href="https://www.youtube.com/@guigamusicofficial" target="_blank" rel="noopener noreferrer" className="flex w-fit items-center gap-3 btn-silver">
+            Canal no YouTube
+            <ArrowUpRight size={15} />
+          </a>
+        </div>
       </div>
     </section>
   );
