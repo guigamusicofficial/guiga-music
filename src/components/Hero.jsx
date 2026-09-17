@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
+
+const ALL_MUSIC = "https://hyperfollow.com/guigamusic";
 
 export default function Hero({ bgImage }) {
   const heroRef = useRef(null);
@@ -63,16 +65,13 @@ export default function Hero({ bgImage }) {
             className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
         )}
-        {/* flashlight overlay */}
         <div
           className="absolute inset-0 transition-[background] duration-300"
           style={{
             background: `radial-gradient(circle at ${mouse.x * 100}% ${mouse.y * 100}%, rgba(45,11,49,0.0) 0%, rgba(5,5,5,0.55) 45%, rgba(5,5,5,0.92) 100%)`,
           }}
         />
-        {/* base dark vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-[#050505]/70" />
-        {/* violet ambient */}
         <div className="absolute -left-40 top-1/3 w-[500px] h-[500px] rounded-full bg-[#2D0B31]/30 blur-[150px] pointer-events-none" />
         <div className="absolute -right-40 bottom-10 w-[400px] h-[400px] rounded-full bg-[#4E0505]/15 blur-[150px] pointer-events-none" />
       </div>
@@ -95,10 +94,23 @@ export default function Hero({ bgImage }) {
             Música para quem sente além da superfície.
           </p>
 
-          <div className="animate-fade-up delay-500 mt-12 flex flex-col sm:flex-row gap-4">
-            <button onClick={() => scrollTo("#lancamentos")} className="btn-solid">
+          <div className="animate-fade-up delay-500 mt-8 inline-flex items-center gap-3 border border-white/10 bg-black/30 px-4 py-2 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#7a1d2a]" aria-hidden="true" />
+            <span className="text-[0.65rem] sm:text-xs uppercase tracking-[0.22em] text-white/65">
+              Cicatrizes na Pele • Já disponível
+            </span>
+          </div>
+
+          <div className="animate-fade-up delay-500 mt-8 flex flex-col sm:flex-row gap-4">
+            <a
+              href={ALL_MUSIC}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-solid inline-flex items-center justify-center gap-2"
+            >
               Ouça Agora
-            </button>
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
             <button onClick={() => scrollTo("#sobre")} className="btn-silver">
               Conheça o Projeto
             </button>
@@ -110,7 +122,7 @@ export default function Hero({ bgImage }) {
       <button
         onClick={() => scrollTo("#lancamentos")}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-white/80 transition-colors duration-500 animate-fade-slow delay-700"
-        aria-label="Rolar para baixo"
+        aria-label="Rolar para os lançamentos"
       >
         <ChevronDown size={22} className="animate-bounce" style={{ animationDuration: "2.5s" }} />
       </button>
