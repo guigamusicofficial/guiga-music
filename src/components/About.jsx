@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
+const PILLARS = [
+  { number: "01", title: "Música", text: "Dark pop, R&B alternativo e rap se encontram em canções que colocam emoção, atmosfera e narrativa no centro." },
+  { number: "02", title: "Imagem", text: "Cada lançamento também é construído visualmente — sombras, cidade, chuva, luz e personagens que ampliam a história." },
+  { number: "03", title: "Emoção", text: "Cicatrizes, desejo, conflitos, superação e relações intensas. O projeto nasce de sentimentos que continuam depois da música." },
+];
+
 export default function About({ bgImage }) {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -7,68 +13,72 @@ export default function About({ bgImage }) {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setVisible(true),
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, []);
 
-  const paragraphs = [
-    "GUIGA MUSIC transforma emoções, conflitos e histórias em música.",
-    "Entre cicatrizes, desejo, superação e relações intensas, cada lançamento constrói um universo próprio onde música e imagem fazem parte da mesma história.",
-    "Uma identidade urbana, noturna e cinematográfica criada para quem não apenas escuta música — sente.",
-  ];
-
   return (
     <section
       id="sobre"
       ref={sectionRef}
-      className="relative py-32 sm:py-44 overflow-hidden bg-[#080808]"
+      className="relative py-28 sm:py-40 overflow-hidden bg-[#080808]"
     >
-      {/* giant background monogram */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none"
-        aria-hidden="true"
-      >
-        <span className="font-display font-extrabold text-[28vw] sm:text-[22vw] leading-none text-white/[0.03] tracking-tighter">
-          GUIGA
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none" aria-hidden="true">
+        <span className="font-display font-extrabold text-[28vw] sm:text-[22vw] leading-none text-white/[0.025] tracking-tighter">
+          GM
         </span>
       </div>
 
-      {/* ambient texture image */}
       {bgImage && (
         <div
-          className="absolute inset-0 opacity-20 pointer-events-none"
-          style={{ maskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 70%)", WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 70%)" }}
+          className="absolute inset-0 opacity-[0.14] pointer-events-none"
+          style={{
+            maskImage: "radial-gradient(circle at 65% 50%, black 0%, transparent 68%)",
+            WebkitMaskImage: "radial-gradient(circle at 65% 50%, black 0%, transparent 68%)",
+          }}
         >
           <img src={bgImage} alt="" className="w-full h-full object-cover" />
         </div>
       )}
 
       <div className="relative mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="section-label mb-5">O Projeto</p>
-          <h2 className="headline text-4xl sm:text-6xl lg:text-7xl text-white mb-14">
-            SOBRE <span className="text-white/40">GUIGA MUSIC</span>
+          <h2 className="headline text-4xl sm:text-6xl lg:text-7xl text-white mb-8">
+            SOBRE <span className="text-white/35">GUIGA MUSIC</span>
           </h2>
 
-          <div className="space-y-8">
-            {paragraphs.map((text, i) => (
-              <p
-                key={i}
-                className={`text-lg sm:text-xl lg:text-2xl font-light leading-relaxed text-white/70 transition-all duration-1000 ${
-                  visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-6 blur-sm"
-                }`}
-                style={{ transitionDelay: `${i * 200}ms`, letterSpacing: "0.02em" }}
+          <div className="max-w-3xl space-y-6">
+            <p className={`text-xl sm:text-2xl lg:text-3xl font-light leading-relaxed text-white/85 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              GUIGA MUSIC transforma <span className="text-white">cicatrizes, desejos e conflitos internos</span> em música.
+            </p>
+            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              O projeto mistura dark pop, R&B alternativo e rap com uma atmosfera urbana e cinematográfica. Cada faixa é pensada como uma cena: tem uma história, uma imagem e uma emoção para carregar.
+            </p>
+            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              Aqui, música e imagem caminham juntas para falar com quem já caiu, sentiu, sobreviveu e continuou seguindo — mesmo quando ninguém conhecia a história por trás das marcas.
+            </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 border border-white/10">
+            {PILLARS.map((pillar, i) => (
+              <article
+                key={pillar.number}
+                className={`bg-[#080808]/95 p-7 sm:p-8 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${350 + i * 120}ms` }}
               >
-                {text}
-              </p>
+                <span className="text-xs tracking-[0.3em] text-white/30">{pillar.number}</span>
+                <h3 className="mt-5 text-lg uppercase tracking-[0.2em] text-white">{pillar.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-white/50">{pillar.text}</p>
+              </article>
             ))}
           </div>
 
-          <div className="mt-16 flex items-center gap-6">
+          <div className="mt-14 flex items-center gap-6">
             <div className="h-px w-16 bg-white/20" />
-            <span className="text-sm uppercase tracking-[0.4em] text-white/40">
+            <span className="text-xs sm:text-sm uppercase tracking-[0.35em] text-white/35">
               Música • Imagem • Emoção
             </span>
           </div>
