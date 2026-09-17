@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 
 const Hero = lazy(() => import("@/components/Hero"));
 const Releases = lazy(() => import("@/components/Releases"));
+const AudioPreviews = lazy(() => import("@/components/AudioPreviews"));
 const About = lazy(() => import("@/components/About"));
 const Gallery = lazy(() => import("@/components/Gallery"));
 const Platforms = lazy(() => import("@/components/Platforms"));
@@ -37,6 +38,9 @@ export default function Home() {
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <Releases />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <AudioPreviews />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <About bgImage={ABOUT_IMG} />
