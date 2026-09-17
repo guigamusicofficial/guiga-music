@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ArrowUpRight } from "lucide-react";
 
@@ -12,9 +12,14 @@ const PHOTOS = [
 
 export default function Gallery() {
   const [active, setActive] = useState(null);
+  const gridRef = useRef(null);
   const close = useCallback(() => setActive(null), []);
   const next = useCallback(() => setActive((i) => i === null ? i : (i + 1) % PHOTOS.length), []);
   const prev = useCallback(() => setActive((i) => i === null ? i : (i - 1 + PHOTOS.length) % PHOTOS.length), []);
+
+  const explore = () => {
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   useEffect(() => {
     if (active === null) return;
@@ -45,12 +50,19 @@ export default function Gallery() {
               Imagens que fazem parte do universo GUIGA MUSIC — lançamentos, personagens, atmosferas e histórias entre a sombra e a luz.
             </p>
           </div>
-          <div className="hidden md:flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/30">
-            <span>Explore</span><ArrowUpRight size={15} />
-          </div>
+
+          <button
+            type="button"
+            onClick={explore}
+            className="group self-start md:self-auto inline-flex items-center gap-3 border border-white/10 bg-white/[0.025] px-6 py-4 text-xs uppercase tracking-[0.3em] text-white/45 hover:text-white hover:border-white/30 hover:bg-white/[0.06] transition-all duration-500"
+            aria-label="Explorar galeria de imagens"
+          >
+            <span>Explore</span>
+            <ArrowUpRight size={15} className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[210px] md:auto-rows-[250px] gap-2 sm:gap-4 grid-flow-dense">
+        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[210px] md:auto-rows-[250px] gap-2 sm:gap-4 grid-flow-dense scroll-mt-24">
           {PHOTOS.map((photo, i) => (
             <motion.button
               key={i}
