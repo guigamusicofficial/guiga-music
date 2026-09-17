@@ -8,13 +8,19 @@ const PILLARS = [
 
 export default function About({ bgImage }) {
   const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  // Keep the content visible even if the observer is delayed/unsupported.
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+
     const obs = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setVisible(true),
-      { threshold: 0.15 }
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.08 }
     );
+
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, []);
@@ -51,13 +57,13 @@ export default function About({ bgImage }) {
           </h2>
 
           <div className="max-w-3xl space-y-6">
-            <p className={`text-xl sm:text-2xl lg:text-3xl font-light leading-relaxed text-white/85 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <p className={`text-xl sm:text-2xl lg:text-3xl font-light leading-relaxed text-white transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-100 translate-y-6"}`}>
               GUIGA MUSIC transforma <span className="text-white">cicatrizes, desejos e conflitos internos</span> em música.
             </p>
-            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-100 translate-y-6"}`}>
               O projeto mistura dark pop, R&B alternativo e rap com uma atmosfera urbana e cinematográfica. Cada faixa é pensada como uma cena: tem uma história, uma imagem e uma emoção para carregar.
             </p>
-            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <p className={`text-base sm:text-lg lg:text-xl font-light leading-relaxed text-white/60 transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-100 translate-y-6"}`}>
               Aqui, música e imagem caminham juntas para falar com quem já caiu, sentiu, sobreviveu e continuou seguindo — mesmo quando ninguém conhecia a história por trás das marcas.
             </p>
           </div>
@@ -66,7 +72,7 @@ export default function About({ bgImage }) {
             {PILLARS.map((pillar, i) => (
               <article
                 key={pillar.number}
-                className={`bg-[#080808]/95 p-7 sm:p-8 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`bg-[#080808]/95 p-7 sm:p-8 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-100 translate-y-8"}`}
                 style={{ transitionDelay: `${350 + i * 120}ms` }}
               >
                 <span className="text-xs tracking-[0.3em] text-white/30">{pillar.number}</span>
