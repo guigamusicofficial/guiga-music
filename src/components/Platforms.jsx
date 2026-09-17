@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpRight, Headphones } from "lucide-react";
 
 const ALL_MUSIC = "https://hyperfollow.com/guigamusic";
 
@@ -11,56 +12,50 @@ export const PLATFORMS = [
   { name: "Tidal", href: ALL_MUSIC, color: "#00D9FF" },
 ];
 
-function PlatformGlyph({ name }) {
-  return (
-    <span className="font-display font-extrabold text-2xl sm:text-3xl text-white/70 transition-all duration-500">
-      {name.charAt(0)}
-    </span>
-  );
-}
-
 export default function Platforms() {
   return (
-    <section id="plataformas" className="relative py-28 sm:py-36 bg-[#070707]">
-      <div className="absolute inset-0 light-sweep pointer-events-none" />
+    <section id="plataformas" className="relative py-28 sm:py-40 bg-[#060606] overflow-hidden">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-[#2D0B31]/15 blur-[150px] pointer-events-none" />
       <div className="relative mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
-        <div className="text-center mb-16 sm:mb-20">
+        <div className="max-w-2xl mb-14 sm:mb-20">
           <p className="section-label mb-5">Streaming</p>
           <h2 className="headline text-4xl sm:text-6xl lg:text-7xl text-white">
-            OUÇA <span className="text-white/40">GUIGA MUSIC</span>
+            OUÇA <span className="text-white/35">GUIGA MUSIC</span>
           </h2>
-          <p className="mt-6 text-sm text-muted-foreground max-w-md mx-auto">
-            Encontre a GUIGA MUSIC nas principais plataformas digitais.
+          <p className="mt-6 text-base sm:text-lg text-white/45 max-w-xl leading-relaxed">
+            Escolha sua plataforma e entre no universo GUIGA MUSIC. Todos os lançamentos em um só lugar.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-white/5 border border-white/5">
-          {PLATFORMS.map((p) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {PLATFORMS.map((p, i) => (
             <a
               key={p.name}
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col items-center justify-center gap-4 py-12 sm:py-14 bg-[#0a0a0a] transition-all duration-500 hover:bg-[#0e0e0e]"
+              className="group relative overflow-hidden flex items-center justify-between min-h-[104px] px-6 sm:px-8 border border-white/10 bg-white/[0.025] hover:bg-white/[0.055] hover:border-white/20 transition-all duration-500"
               aria-label={`Ouvir GUIGA MUSIC — ${p.name}`}
             >
-              <span className="transition-all duration-500 group-hover:scale-110">
-                <PlatformGlyph name={p.name} />
+              <span className="flex items-center gap-5">
+                <span className="flex items-center justify-center w-11 h-11 border border-white/10 bg-black/20 text-white/65 group-hover:text-white transition-colors duration-500">
+                  <Headphones size={19} strokeWidth={1.5} />
+                </span>
+                <span>
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-white/30">Ouça no</span>
+                  <span className="block mt-1 text-sm sm:text-base uppercase tracking-[0.18em] text-white/70 group-hover:text-white transition-colors duration-500">{p.name}</span>
+                </span>
               </span>
-              <span className="text-sm uppercase tracking-[0.3em] text-white/50 group-hover:text-white/80 transition-colors duration-500">
-                {p.name}
-              </span>
-              <span
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                style={{ boxShadow: `inset 0 0 60px -20px ${p.color}` }}
-              />
+              <ArrowUpRight size={18} className="text-white/25 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+              <span className="absolute left-0 bottom-0 h-px w-0 group-hover:w-full transition-all duration-700" style={{ background: p.color }} />
             </a>
           ))}
         </div>
 
-        <p className="mt-8 text-center text-xs uppercase tracking-[0.25em] text-white/25">
-          Um único lugar para encontrar todas as músicas
-        </p>
+        <a href={ALL_MUSIC} target="_blank" rel="noopener noreferrer" className="mt-10 mx-auto flex w-fit items-center gap-3 btn-solid">
+          Ouvir todos os lançamentos
+          <ArrowUpRight size={15} />
+        </a>
       </div>
     </section>
   );
